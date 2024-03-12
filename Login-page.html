@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .container {
+            width: 350px;
+            height: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+        
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .container input[type="email"], .container input[type="password"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .container input[type="submit"]:hover {
+            background-color: #0069D9;
+        }
+        
+        .container p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .container p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .container{
+            background-color: black;
+            color: white;
+            position: relative;
+            top:80px;
+           
+        }
+        #submit{
+            background-color: red;
+            color: white;
+            width: 294px;
+            height:40px;
+            position: relative;
+            left:27px;
+            top:25px;
+        }
+        #email{
+            background-color: #333;
+            width: 280px;
+            height:35px;
+            position: relative;
+            left:27px;
+        }
+        #password{
+            background-color: #333;
+            width: 280px;
+            height:35px;
+            position: relative;
+            left:27px;
+            top:8px;
+        }
+        #remember{
+            position: relative;
+            top:70px;
+            right:273px;
+        }
+        #rem{
+            position: relative;
+            top:40px;
+            left:50px;
+        }
+        #p1{
+            position: relative;
+            top:40px;
+            right:35px;
+        }
+        body{
+            background-image: url(d.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign In</h1>
+        <form action="/signin" method="post">
+            <!-- <label for="email">Email or phone number</label><br> -->
+            <input type="email" id="email" name="email" placeholder="email" required><br>
+            <!-- <label for="password">Password</label><br> -->
+            <input type="password" id="password" name="password" placeholder="password" required><br>
+            
+            <input type="submit" value="Sign In" id="submit">
+            <input type="checkbox" id="remember" name="remember" value="Remember Me">
+            <label for="remember" id="rem">Remember me</label><br>
+        </form>
+        <p id="p1">New to Study Space? <a href="/signup">Sign up now.</a></p>
+       
+    </div>
+    <script>
+        const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/signin', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // Here you would typically check the email and password against a database
+    // For simplicity, we'll just print them to the console
+    console.log(`Email: ${email}, Password: ${password}`);
+
+    res.redirect('/');
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+    </script>
+</body>
+</html>
